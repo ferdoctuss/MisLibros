@@ -93,12 +93,22 @@
         .info-libro h3 {
             margin-top: 0;
             font-size: 1.15rem;
+            text-transform: uppercase;
+        }
+
+        .info-libro h4 {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            font-style: italic;
+            color: #444;
+            font-weight: normal;
         }
 
         .info-libro p {
             font-size: 0.9rem;
             color: #666;
             flex-grow: 1;
+            line-height: 1.4;
         }
 
         .btn-amazon {
@@ -132,15 +142,15 @@
 
     <header>
         <h1>Luis Fernando Carranza</h1>
-        <p>Catálogo oficial de libros publicados en Amazon Kindle</p>
+        <p>Catálogo oficial de obras publicadas en Amazon Kindle</p>
     </header>
 
     <!-- Botones de Filtrado -->
     <div class="filtros">
         <button class="btn-filtro activo" onclick="filtrarLibros('todos', this)">Todos</button>
         <button class="btn-filtro" onclick="filtrarLibros('Derecho', this)">Derecho</button>
-        <button class="btn-filtro" onclick="filtrarLibros('Ciencias', this)">Ciencias</button>
-        <button class="btn-filtro" onclick="filtrarLibros('Liderazgo', this)">Liderazgo</button>
+        <button class="btn-filtro" onclick="filtrarLibros('Historia', this)">Historia</button>
+        <button class="btn-filtro" onclick="filtrarLibros('Cuentos Cortos', this)">Cuentos Cortos</button>
     </div>
 
     <main>
@@ -154,131 +164,92 @@
     </footer>
 
     <script>
-        // Lista completa de tus libros extraídos de tus enlaces de Amazon
+        // Lista de libros
         const libros = [
             // DERECHO
             {
-                titulo: "Obra de Derecho (ASIN: B0F9N4LLZQ)",
+                titulo: "DERECHO ROMANO Y DERECHO ANGLOSAJÓN - DOS SISTEMAS, UN MUNDO JURÍDICO",
+                subtitulo: "Los dos sistemas jurídicos que sentaron las bases para los sistemas judiciales actuales.",
                 categoria: "Derecho",
-                descripcion: "Publicación especializada en el ámbito del derecho disponible en Amazon Kindle.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F9N4LLZQ?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                descripcion: "Este libro ofrece un recorrido comparativo por los dos grandes modelos jurídicos que han marcado la historia y configuración del Derecho moderno: el Derecho Romano y el Derecho Anglosajón (Common Law). A través de una estructura clara y rigurosa, se abordan sus orígenes históricos, fuentes normativas, principios fundamentales, instituciones clave, y su vigencia actual en el mundo globalizado.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI", 
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F9N4LLZQ"
             },
             {
-                titulo: "Obra de Derecho (ASIN: B0DKDDB3D3)",
+                titulo: "DERECHO ROMANO",
+                subtitulo: "Evolución y legado para la modernidad",
                 categoria: "Derecho",
-                descripcion: "Análisis jurídico y doctrina orientada a la práctica legal.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DKDDB3D3?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                descripcion: "¿Alguna vez te has preguntado de dónde provienen los principios legales que rigen nuestra sociedad? ¿Te gustaría conocer el sistema jurídico que sentó las bases de la civilización occidental? Embárcate en un apasionante viaje a través del tiempo con este libro que te revelará los secretos del Derecho Romano, un legado milenario que sigue vigente en nuestros días.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0D9KSNS16"
             },
             {
-                titulo: "Obra de Derecho (ASIN: B0D9KSNS16)",
+                titulo: "INTRODUCCIÓN AL DERECHO INTERNACIONAL",
+                subtitulo: "Desde los fundamentos hasta los retos contemporáneos",
                 categoria: "Derecho",
-                descripcion: "Texto enfocado en normativas y fundamentos de derecho contemporáneo.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0D9KSNS16?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Derecho (ASIN: B0DM9QFHHB)",
-                categoria: "Derecho",
-                descripcion: "Estudio detallado sobre aspectos legales y teóricos.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DM9QFHHB?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Derecho (ASIN: B0F8F1XFHC)",
-                categoria: "Derecho",
-                descripcion: "Publicación de contenido jurídico y análisis legal avanzado.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F8F1XFHC?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Derecho (ASIN: B0DMKXZTZL)",
-                categoria: "Derecho",
-                descripcion: "Recurso bibliográfico esencial para estudiantes y profesionales de leyes.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DMKXZTZL?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                descripcion: "Obra fundamental para estudiantes, profesionales y apasionados por el mundo del derecho. En este libro, se exploran de manera clara y estructurada los pilares y la evolución del Derecho Internacional, brindando una comprensión profunda sobre sus principios esenciales y su relevancia en el contexto global actual.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DM9QFHHB"
             },
 
-            // CIENCIAS
+            // HISTORIA (Basado en la categoría elegida implícita en los textos)
             {
-                titulo: "Obra de Ciencias (ASIN: B0FCQZTB7R)",
-                categoria: "Ciencias",
-                descripcion: "Investigación y divulgación científica al alcance de todos.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FCQZTB7R?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                titulo: "LEGADO LA HISTORIA DEL MUNDO",
+                subtitulo: "Un libro de 720 paginas con toda la historia de la humanidad desde el inicio de los tiempos hasta el siglo XXI",
+                categoria: "Historia",
+                descripcion: "Una historia del mundo, contada con claridad, amplitud y pasión. Desde la formación del universo hasta el auge de la inteligencia artificial, este libro propone un recorrido ágil y riguroso por los grandes momentos de la historia humana. Dividido en nueve partes temáticas y cronológicas, ofrece al lector una visión global de las civilizaciones, las ideas, los conflictos y los cambios que han marcado nuestro pasado colectivo.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/dp/B0F9TPC3JL"
             },
             {
-                titulo: "Obra de Ciencias (ASIN: B0CW1F9YBL)",
-                categoria: "Ciencias",
-                descripcion: "Exploración de conceptos científicos aplicados y teóricos.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0CW1F9YBL?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                titulo: "RASPUTÍN",
+                subtitulo: "Mito, Poder y Caída del Último Imperio Ruso",
+                categoria: "Historia",
+                descripcion: "En el ocaso del Imperio ruso, un hombre de origen humilde se convirtió en la figura más temida y fascinante de la corte imperial. Grigori Rasputín, campesino siberiano, místico y sanador, entró en la vida del zar Nicolás II y la zarina Alexandra. Este libro recorre su vida desde la aldea donde nació hasta la noche de su asesinato, desmontando mitos y revelando la verdad detrás del hombre que, según muchos, aceleró la caída de la dinastía Romanov.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FMKKXC4B"
+            },
+            {
+                titulo: "EL MONSTRUO DE LOS ANDES",
+                subtitulo: "Pedro Alonso López el asesino en serie más letal de América",
+                categoria: "Historia",
+                descripcion: "Crímenes que no deben olvidarse: El caso de Pedro Alonso López es una exploración rigurosa y respetuosa de uno de los episodios más oscuros de la historia criminal de América Latina. Este libro narra la vida y los crímenes del 'Monstruo de los Andes', un asesino en serie que confesó haber matado a más de 300 niñas en Colombia, Ecuador y Perú durante la década de 1970.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FLRSNRNX"
             },
 
-            // LIDERAZGO
+            // CUENTOS CORTOS
             {
-                titulo: "Obra de Liderazgo (ASIN: B0DK6NDWRF)",
-                categoria: "Liderazgo",
-                descripcion: "Estrategias y claves para el desarrollo personal y profesional.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DK6NDWRF?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                titulo: "EL HOMBRE CON CARA DE VACA",
+                subtitulo: "",
+                categoria: "Cuentos Cortos",
+                descripcion: "En lo profundo del campo, donde la oscuridad se mezcla con la niebla, nace una leyenda que hiela la sangre: El Hombre con Cara de Vaca. Durante generaciones, los abuelos advirtieron a sus nietos sobre una criatura que se alimenta de animales y, a veces, de seres humanos. Nadie le presta atención a los cuentos antiguos, hasta que la noche se convierte en pesadilla.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FSCKPJ2F"
             },
             {
-                titulo: "Obra de Liderazgo (ASIN: B0F1QLP2SW)",
-                categoria: "Liderazgo",
-                descripcion: "Guía práctica enfocada en la gestión de equipos y toma de decisiones.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F1QLP2SW?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                titulo: "EL TAPIZ FRACTURADO - CUENTO CORTO",
+                subtitulo: "Viajes en el tiempo complejos",
+                categoria: "Cuentos Cortos",
+                descripcion: "En un futuro donde la ciencia ha tejido los límites del tiempo como si fueran hilos de un tapiz infinito, El Tapiz Fracturado nos sumerge en un viaje vertiginoso a través de múltiples realidades, decisiones imposibles y paradojas sin salida. Este cuento de ciencia ficción explora las consecuencias de intervenir en el pasado, no solo desde la física, sino desde lo humano.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DS6HVB23"
             },
             {
-                titulo: "Obra de Liderazgo (ASIN: B0FDJPK1DQ)",
-                categoria: "Liderazgo",
-                descripcion: "Principios de influencia positiva y dirección efectiva.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FDJPK1DQ?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                titulo: "EL ÚLTIMO REFUGIO",
+                subtitulo: "",
+                categoria: "Cuentos Cortos",
+                descripcion: "En el año 2275, la Tierra se ha vuelto inhabitable tras un fallido experimento de geoingeniería. La humanidad sobrevive confinada en la imponente Ciudad Vertical, una megaestructura donde el privilegio se mide en pisos y la esperanza parece un mito del pasado. Unidos por el misterio del 'Proyecto Edén', un trío se lanza a descubrir una verdad que los celestes han ocultado.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FBSTNTR3"
             },
             {
-                titulo: "Obra de Liderazgo (ASIN: B0BT96YF6K)",
-                categoria: "Liderazgo",
-                descripcion: "Reflexiones sobre el liderazgo moderno y el éxito profesional.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0BT96YF6K?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Liderazgo (ASIN: B0FL2XTRFS)",
-                categoria: "Liderazgo",
-                descripcion: "Herramientas de liderazgo aplicadas al crecimiento continuo.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FL2XTRFS?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Liderazgo (ASIN: B0FJZ9K6XD)",
-                categoria: "Liderazgo",
-                descripcion: "Inspiración y visión estratégica para líderes en formación.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FJZ9K6XD?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Liderazgo (ASIN: B0FN6QK9NS)",
-                categoria: "Liderazgo",
-                descripcion: "Claves de rendimiento y superación personal.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FN6QK9NS?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Liderazgo (ASIN: B0DYL18LHQ)",
-                categoria: "Liderazgo",
-                descripcion: "Enfoques prácticos para potenciar habilidades de dirección.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DYL18LHQ?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
-            },
-            {
-                titulo: "Obra de Liderazgo (ASIN: B0DYL7HZ2N)",
-                categoria: "Liderazgo",
-                descripcion: "Metodologías de organización y liderazgo de alto impacto.",
-                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DYL7HZ2N?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+                titulo: "LA ÚLTIMA HORA DEL PRINCIPIO",
+                subtitulo: "",
+                categoria: "Cuentos Cortos",
+                descripcion: "Atrapado en un laboratorio al borde del colapso, un científico viaja cuatro horas al pasado para evitar una catástrofe, solo para descubrir que ha entrado en un bucle infinito donde se enfrenta a su propio alter ego en un ciclo eterno de muerte y renacimiento.",
+                portada: "LINK_DE_TU_IMAGEN_AQUI",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0HFYK8M5X"
             }
         ];
 
@@ -290,11 +261,20 @@
                 const tarjeta = document.createElement("div");
                 tarjeta.classList.add("tarjeta-libro");
                 
+                // Si la portada es LINK_DE_TU_IMAGEN_AQUI, usamos el placeholder dinámico
+                let portadaSrc = libro.portada === "LINK_DE_TU_IMAGEN_AQUI" 
+                    ? `https://via.placeholder.com/300x450/131921/FFFFFF?text=${encodeURIComponent(libro.titulo)}`
+                    : libro.portada;
+
+                // Solo mostramos subtítulo si existe
+                let subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
+                
                 tarjeta.innerHTML = `
-                    <img src="${libro.portada}" alt="Portada de ${libro.titulo}" onerror="this.src='https://via.placeholder.com/300x450.png?text=Libro+Amazon'">
+                    <img src="${portadaSrc}" alt="Portada de ${libro.titulo}" onerror="this.src='https://via.placeholder.com/300x450/131921/FFFFFF?text=${encodeURIComponent(libro.titulo)}'">
                     <div class="info-libro">
                         <span class="categoria-tag">${libro.categoria}</span>
                         <h3>${libro.titulo}</h3>
+                        ${subtituloHtml}
                         <p>${libro.descripcion}</p>
                         <a href="${libro.enlaceAmazon}" target="_blank" class="btn-amazon">Ver en Amazon</a>
                     </div>
