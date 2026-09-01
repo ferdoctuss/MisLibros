@@ -4,9 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Catálogo de Libros</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- ESTILOS (CSS) --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background-color: #131921;
+            color: white;
+        }
+
+        header p {
+            color: #febd69;
+        }
+
+        .grid-libros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tarjeta-libro {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tarjeta-libro img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+
+        .info-libro {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .info-libro h3 {
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+
+        .info-libro p {
+            font-size: 0.95rem;
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .btn-amazon {
+            display: inline-block;
+            text-align: center;
+            background-color: #ffd814;
+            color: #0f1111;
+            text-decoration: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px solid #fcd200;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-amazon:hover {
+            background-color: #f7ca00;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #232f3e;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <h1>Mis Obras Publicadas</h1>
         <p>Explora mis libros disponibles en Amazon Kindle</p>
@@ -21,6 +111,44 @@
         <p>&copy; 2026 - Todos los derechos reservados</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        /* --- LÓGICA Y DATOS (JavaScript) --- */
+        
+        // Tus libros definidos directamente aquí (reemplaza con tus datos reales)
+        const libros = [
+            {
+                titulo: "Mi Primer Corto",
+                descripcion: "Una historia fascinante de 15 páginas que explora los límites de la imaginación.",
+                portada: "https://via.placeholder.com/300x450.png?text=Portada+Libro+1",
+                enlaceAmazon: "https://www.amazon.com/dp/TU_ENLACE_AQUÍ"
+            },
+            {
+                titulo: "Segundo Relato",
+                descripcion: "Un viaje introspectivo a través del misterio y la ficción contemporánea.",
+                portada: "https://via.placeholder.com/300x450.png?text=Portada+Libro+2",
+                enlaceAmazon: "https://www.amazon.com/dp/TU_ENLACE_AQUÍ"
+            }
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const contenedor = document.getElementById("contenedor-libros");
+            
+            libros.forEach(libro => {
+                const tarjeta = document.createElement("div");
+                tarjeta.classList.add("tarjeta-libro");
+                
+                tarjeta.innerHTML = `
+                    <img src="${libro.portada}" alt="Portada de ${libro.titulo}">
+                    <div class="info-libro">
+                        <h3>${libro.titulo}</h3>
+                        <p>${libro.descripcion}</p>
+                        <a href="${libro.enlaceAmazon}" target="_blank" class="btn-amazon">Ver en Amazon</a>
+                    </div>
+                `;
+                
+                contenedor.appendChild(tarjeta);
+            });
+        });
+    </script>
 </body>
 </html>
