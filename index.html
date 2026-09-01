@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Catálogo de Libros</title>
+    <title>Luis Fernando Carranza - Catálogo de Libros</title>
     <style>
-        /* --- ESTILOS (CSS) --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,6 +22,31 @@
 
         header p {
             color: #febd69;
+        }
+
+        /* Botones de Filtro */
+        .filtros {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 2rem 0 1rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .btn-filtro {
+            background-color: #e3e6e8;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-filtro:hover, .btn-filtro.activo {
+            background-color: #232f3e;
+            color: white;
         }
 
         .grid-libros {
@@ -48,6 +72,7 @@
             width: 100%;
             height: 380px;
             object-fit: cover;
+            background-color: #eee;
         }
 
         .info-libro {
@@ -57,13 +82,21 @@
             flex-grow: 1;
         }
 
+        .categoria-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #007185;
+            margin-bottom: 0.5rem;
+        }
+
         .info-libro h3 {
             margin-top: 0;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
         }
 
         .info-libro p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #666;
             flex-grow: 1;
         }
@@ -98,48 +131,169 @@
 <body>
 
     <header>
-        <h1>Mis Obras Publicadas</h1>
-        <p>Explora mis libros disponibles en Amazon Kindle</p>
+        <h1>Luis Fernando Carranza</h1>
+        <p>Catálogo oficial de libros publicados en Amazon Kindle</p>
     </header>
+
+    <!-- Botones de Filtrado -->
+    <div class="filtros">
+        <button class="btn-filtro activo" onclick="filtrarLibros('todos', this)">Todos</button>
+        <button class="btn-filtro" onclick="filtrarLibros('Derecho', this)">Derecho</button>
+        <button class="btn-filtro" onclick="filtrarLibros('Ciencias', this)">Ciencias</button>
+        <button class="btn-filtro" onclick="filtrarLibros('Liderazgo', this)">Liderazgo</button>
+    </div>
 
     <main>
         <div id="contenedor-libros" class="grid-libros">
-            </div>
+            <!-- Los libros se cargarán dinámicamente aquí -->
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 - Todos los derechos reservados</p>
+        <p>&copy; 2026 Luis Fernando Carranza - Todos los derechos reservados</p>
     </footer>
 
     <script>
-        /* --- LÓGICA Y DATOS (JavaScript) --- */
-        
-        // Tus libros definidos directamente aquí (reemplaza con tus datos reales)
+        // Lista completa de tus libros extraídos de tus enlaces de Amazon
         const libros = [
+            // DERECHO
             {
-                titulo: "Mi Primer Corto",
-                descripcion: "Una historia fascinante de 15 páginas que explora los límites de la imaginación.",
-                portada: "https://via.placeholder.com/300x450.png?text=Portada+Libro+1",
-                enlaceAmazon: "https://www.amazon.com/dp/TU_ENLACE_AQUÍ"
+                titulo: "Obra de Derecho (ASIN: B0F9N4LLZQ)",
+                categoria: "Derecho",
+                descripcion: "Publicación especializada en el ámbito del derecho disponible en Amazon Kindle.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F9N4LLZQ?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
             },
             {
-                titulo: "Segundo Relato",
-                descripcion: "Un viaje introspectivo a través del misterio y la ficción contemporánea.",
-                portada: "https://via.placeholder.com/300x450.png?text=Portada+Libro+2",
-                enlaceAmazon: "https://www.amazon.com/dp/TU_ENLACE_AQUÍ"
+                titulo: "Obra de Derecho (ASIN: B0DKDDB3D3)",
+                categoria: "Derecho",
+                descripcion: "Análisis jurídico y doctrina orientada a la práctica legal.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DKDDB3D3?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Derecho (ASIN: B0D9KSNS16)",
+                categoria: "Derecho",
+                descripcion: "Texto enfocado en normativas y fundamentos de derecho contemporáneo.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0D9KSNS16?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Derecho (ASIN: B0DM9QFHHB)",
+                categoria: "Derecho",
+                descripcion: "Estudio detallado sobre aspectos legales y teóricos.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DM9QFHHB?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Derecho (ASIN: B0F8F1XFHC)",
+                categoria: "Derecho",
+                descripcion: "Publicación de contenido jurídico y análisis legal avanzado.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F8F1XFHC?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Derecho (ASIN: B0DMKXZTZL)",
+                categoria: "Derecho",
+                descripcion: "Recurso bibliográfico esencial para estudiantes y profesionales de leyes.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DMKXZTZL?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+
+            // CIENCIAS
+            {
+                titulo: "Obra de Ciencias (ASIN: B0FCQZTB7R)",
+                categoria: "Ciencias",
+                descripcion: "Investigación y divulgación científica al alcance de todos.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FCQZTB7R?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Ciencias (ASIN: B0CW1F9YBL)",
+                categoria: "Ciencias",
+                descripcion: "Exploración de conceptos científicos aplicados y teóricos.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0CW1F9YBL?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+
+            // LIDERAZGO
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0DK6NDWRF)",
+                categoria: "Liderazgo",
+                descripcion: "Estrategias y claves para el desarrollo personal y profesional.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DK6NDWRF?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0F1QLP2SW)",
+                categoria: "Liderazgo",
+                descripcion: "Guía práctica enfocada en la gestión de equipos y toma de decisiones.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F1QLP2SW?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0FDJPK1DQ)",
+                categoria: "Liderazgo",
+                descripcion: "Principios de influencia positiva y dirección efectiva.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FDJPK1DQ?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0BT96YF6K)",
+                categoria: "Liderazgo",
+                descripcion: "Reflexiones sobre el liderazgo moderno y el éxito profesional.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0BT96YF6K?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0FL2XTRFS)",
+                categoria: "Liderazgo",
+                descripcion: "Herramientas de liderazgo aplicadas al crecimiento continuo.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FL2XTRFS?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0FJZ9K6XD)",
+                categoria: "Liderazgo",
+                descripcion: "Inspiración y visión estratégica para líderes en formación.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FJZ9K6XD?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0FN6QK9NS)",
+                categoria: "Liderazgo",
+                descripcion: "Claves de rendimiento y superación personal.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FN6QK9NS?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0DYL18LHQ)",
+                categoria: "Liderazgo",
+                descripcion: "Enfoques prácticos para potenciar habilidades de dirección.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DYL18LHQ?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
+            },
+            {
+                titulo: "Obra de Liderazgo (ASIN: B0DYL7HZ2N)",
+                categoria: "Liderazgo",
+                descripcion: "Metodologías de organización y liderazgo de alto impacto.",
+                portada: "https://images-na.ssl-images-amazon.com/images/I/71X--h1oH3L._SL1500_.jpg",
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DYL7HZ2N?ref_=ast_author_dp_lf_Spanish_rw&th=1&psc=1"
             }
         ];
 
-        document.addEventListener("DOMContentLoaded", () => {
+        function mostrarLibros(librosAMostrar) {
             const contenedor = document.getElementById("contenedor-libros");
+            contenedor.innerHTML = "";
             
-            libros.forEach(libro => {
+            librosAMostrar.forEach(libro => {
                 const tarjeta = document.createElement("div");
                 tarjeta.classList.add("tarjeta-libro");
                 
                 tarjeta.innerHTML = `
-                    <img src="${libro.portada}" alt="Portada de ${libro.titulo}">
+                    <img src="${libro.portada}" alt="Portada de ${libro.titulo}" onerror="this.src='https://via.placeholder.com/300x450.png?text=Libro+Amazon'">
                     <div class="info-libro">
+                        <span class="categoria-tag">${libro.categoria}</span>
                         <h3>${libro.titulo}</h3>
                         <p>${libro.descripcion}</p>
                         <a href="${libro.enlaceAmazon}" target="_blank" class="btn-amazon">Ver en Amazon</a>
@@ -148,6 +302,24 @@
                 
                 contenedor.appendChild(tarjeta);
             });
+        }
+
+        function filtrarLibros(categoria, boton) {
+            // Cambiar clase activa en los botones
+            document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('activo'));
+            boton.classList.add('activo');
+
+            if (categoria === 'todos') {
+                mostrarLibros(libros);
+            } else {
+                const filtrados = libros.filter(libro => libro.categoria === categoria);
+                mostrarLibros(filtrados);
+            }
+        }
+
+        // Cargar todos al iniciar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            mostrarLibros(libros);
         });
     </script>
 </body>
