@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luis Fernando Carranza - Autor</title>
     <style>
-        /* --- ESTILOS REDISEÑADOS: PORTAFOLIO DE AUTOR --- */
+        /* --- ESTILOS PRINCIPALES --- */
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fafafa; /* Fondo más limpio y claro */
+            background-color: #fafafa;
             color: #222;
         }
 
-        /* Cabecera minimalista y elegante */
         header {
             text-align: center;
             padding: 5rem 1rem 3rem;
@@ -23,7 +22,7 @@
         }
 
         header h1 {
-            font-family: 'Georgia', 'Playfair Display', serif; /* Fuente literaria */
+            font-family: 'Georgia', 'Playfair Display', serif;
             font-size: 2.8rem;
             font-weight: normal;
             letter-spacing: 1px;
@@ -38,7 +37,7 @@
             margin: 0;
         }
 
-        /* Botones de Filtro - Estilo sofisticado */
+        /* Botones de Filtro */
         .filtros {
             display: flex;
             justify-content: center;
@@ -68,10 +67,10 @@
             border-color: #111;
         }
 
-        /* Cuadrícula de libros: Más pequeña y con más espacio */
+        /* Cuadrícula de libros (Solo Muestra Título y Portada) */
         .grid-libros {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Libros más pequeños */
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 3.5rem 2rem; 
             max-width: 1200px;
             margin: 2rem auto 5rem;
@@ -79,35 +78,32 @@
             align-items: start;
         }
 
-        /* Tarjeta del libro invisible, la portada es la protagonista */
         .tarjeta-libro {
             display: flex;
             flex-direction: column;
             background: transparent;
+            cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+            transition: transform 0.2s ease;
         }
 
-        /* Diseño de la portada realista */
+        .tarjeta-libro:hover {
+            transform: scale(1.02); /* Pequeño efecto de zoom al pasar el ratón */
+        }
+
         .tarjeta-libro img {
             width: 100%;
             height: auto;
             aspect-ratio: 2 / 3;
             object-fit: contain; 
-            border-radius: 2px 5px 5px 2px; /* Simula el lomo y el borde de un libro */
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.15); /* Sombra de libro físico */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 2px 5px 5px 2px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
             margin-bottom: 1.5rem;
             background-color: transparent;
-        }
-
-        .tarjeta-libro img:hover {
-            transform: translateY(-8px); /* Se eleva suavemente al pasar el ratón */
-            box-shadow: 8px 12px 20px rgba(0,0,0,0.2);
         }
 
         .info-libro {
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
         }
 
         .categoria-tag {
@@ -128,36 +124,125 @@
         }
 
         .info-libro h4 {
-            margin: 0.4rem 0 0.8rem;
+            margin: 0.4rem 0 0;
             font-size: 0.9rem;
             font-style: italic;
             color: #555;
             font-weight: normal;
         }
 
-        /* Limitar descripción para mantener altura uniforme */
-        .info-libro p {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.6;
-            margin: 0 0 1.5rem 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; /* Muestra solo 3 líneas */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            flex-grow: 1;
+        /* --- VENTANA MODAL (SUB-PÁGINA) --- */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7); /* Fondo oscuro semitransparente */
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Botón de compra minimalista */
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 0;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            animation: deslizarArriba 0.3s ease-out;
+        }
+
+        @keyframes deslizarArriba {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .cerrar-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .cerrar-btn:hover {
+            color: #111;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            padding: 3rem;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .modal-body {
+                flex-direction: row;
+            }
+        }
+
+        .modal-portada {
+            flex: 0 0 35%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .modal-portada img {
+            width: 100%;
+            border-radius: 2px 5px 5px 2px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .modal-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-info h2 {
+            font-family: 'Georgia', 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 0 0 0.5rem 0;
+            color: #111;
+        }
+
+        .modal-info h4 {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #555;
+            margin: 0 0 1.5rem 0;
+            font-weight: normal;
+        }
+
+        .modal-info p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+
         .btn-amazon {
             align-self: flex-start;
             background-color: #111;
             color: #fff;
             text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 3px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: background 0.3s;
@@ -186,7 +271,6 @@
         <p>Catálogo oficial de obras literarias y académicas</p>
     </header>
 
-    <!-- Botones de Filtrado -->
     <div class="filtros">
         <button class="btn-filtro activo" onclick="filtrarLibros('todos', this)">Colección Completa</button>
         <button class="btn-filtro" onclick="filtrarLibros('Derecho', this)">Derecho</button>
@@ -200,12 +284,22 @@
         </div>
     </main>
 
+    <!-- Estructura de la Ventana Modal -->
+    <div id="modal-libro" class="modal">
+        <div class="modal-content">
+            <span class="cerrar-btn" onclick="cerrarModal()">&times;</span>
+            <div id="modal-cuerpo" class="modal-body">
+                <!-- El contenido se inyecta por JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Luis Fernando Carranza - Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Lista de libros con tus datos exactos
+        // Lista completa de tus libros
         const libros = [
             // DERECHO
             {
@@ -298,24 +392,21 @@
             const contenedor = document.getElementById("contenedor-libros");
             contenedor.innerHTML = "";
             
-            librosAMostrar.forEach(libro => {
+            librosAMostrar.forEach((libro, index) => {
                 const tarjeta = document.createElement("div");
                 tarjeta.classList.add("tarjeta-libro");
+                // Al hacer clic, enviamos el objeto del libro a la función abrirModal
+                tarjeta.onclick = () => abrirModal(libro);
                 
-                let portadaSrc = libro.portada === "LINK_DE_TU_IMAGEN_AQUI" 
-                    ? `https://via.placeholder.com/300x450/eeeeee/333333?text=${encodeURIComponent(libro.titulo)}`
-                    : libro.portada;
-
                 let subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
                 
+                // Muestra SOLO Portada, Categoría, Título y Subtítulo en la cuadrícula
                 tarjeta.innerHTML = `
-                    <img src="${portadaSrc}" alt="Portada de ${libro.titulo}" onerror="this.src='https://via.placeholder.com/300x450/eeeeee/333333?text=${encodeURIComponent(libro.titulo)}'">
+                    <img src="${libro.portada}" alt="Portada de ${libro.titulo}">
                     <div class="info-libro">
                         <span class="categoria-tag">${libro.categoria}</span>
                         <h3>${libro.titulo}</h3>
                         ${subtituloHtml}
-                        <p>${libro.descripcion}</p>
-                        <a href="${libro.enlaceAmazon}" target="_blank" class="btn-amazon">Ver en Amazon</a>
                     </div>
                 `;
                 
@@ -323,6 +414,42 @@
             });
         }
 
+        // --- FUNCIONES DE LA VENTANA MODAL ---
+        const modal = document.getElementById("modal-libro");
+        const modalCuerpo = document.getElementById("modal-cuerpo");
+
+        function abrirModal(libro) {
+            let subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
+            
+            modalCuerpo.innerHTML = `
+                <div class="modal-portada">
+                    <img src="${libro.portada}" alt="Portada de ${libro.titulo}">
+                </div>
+                <div class="modal-info">
+                    <span class="categoria-tag">${libro.categoria}</span>
+                    <h2>${libro.titulo}</h2>
+                    ${subtituloHtml}
+                    <p>${libro.descripcion}</p>
+                    <a href="${libro.enlaceAmazon}" target="_blank" class="btn-amazon">Ver en Amazon</a>
+                </div>
+            `;
+            modal.style.display = "flex"; // Muestra el modal
+            document.body.style.overflow = "hidden"; // Evita que el fondo haga scroll
+        }
+
+        function cerrarModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Reactiva el scroll del fondo
+        }
+
+        // Cierra el modal si el usuario hace clic fuera de la caja blanca
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
+
+        // --- FILTROS ---
         function filtrarLibros(categoria, boton) {
             document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('activo'));
             boton.classList.add('activo');
