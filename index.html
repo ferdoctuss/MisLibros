@@ -3,139 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Fernando Carranza - Catálogo de Libros</title>
+    <title>Luis Fernando Carranza - Autor</title>
     <style>
+        /* --- ESTILOS REDISEÑADOS: PORTAFOLIO DE AUTOR --- */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #fafafa; /* Fondo más limpio y claro */
+            color: #222;
         }
 
+        /* Cabecera minimalista y elegante */
         header {
             text-align: center;
-            padding: 2.5rem 1rem;
-            background-color: #131921;
-            color: white;
+            padding: 5rem 1rem 3rem;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        header h1 {
+            font-family: 'Georgia', 'Playfair Display', serif; /* Fuente literaria */
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin: 0 0 0.5rem 0;
+            color: #111;
         }
 
         header p {
-            color: #febd69;
+            color: #666;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 0;
         }
 
-        /* Botones de Filtro */
+        /* Botones de Filtro - Estilo sofisticado */
         .filtros {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin: 2rem 0 1rem 0;
+            gap: 15px;
+            margin: 3rem 0 1rem 0;
             flex-wrap: wrap;
             padding: 0 1rem;
         }
 
         .btn-filtro {
-            background-color: #e3e6e8;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
+            background-color: transparent;
+            color: #555;
+            border: 1px solid #ccc;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
             cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s, color 0.2s;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
         .btn-filtro:hover, .btn-filtro.activo {
-            background-color: #232f3e;
-            color: white;
+            background-color: #111;
+            color: #fff;
+            border-color: #111;
         }
 
+        /* Cuadrícula de libros: Más pequeña y con más espacio */
         .grid-libros {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Libros más pequeños */
+            gap: 3.5rem 2rem; 
+            max-width: 1200px;
+            margin: 2rem auto 5rem;
+            padding: 0 2rem;
+            align-items: start;
         }
 
+        /* Tarjeta del libro invisible, la portada es la protagonista */
         .tarjeta-libro {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            background: transparent;
         }
 
+        /* Diseño de la portada realista */
         .tarjeta-libro img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 2 / 3; /* Proporción estándar de libros */
-    object-fit: contain; /* Asegura que no se recorte nada */
-    background-color: #eee;
-}
+            width: 100%;
+            height: auto;
+            aspect-ratio: 2 / 3;
+            object-fit: contain; 
+            border-radius: 2px 5px 5px 2px; /* Simula el lomo y el borde de un libro */
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.15); /* Sombra de libro físico */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1.5rem;
+            background-color: transparent;
+        }
+
+        .tarjeta-libro img:hover {
+            transform: translateY(-8px); /* Se eleva suavemente al pasar el ratón */
+            box-shadow: 8px 12px 20px rgba(0,0,0,0.2);
+        }
 
         .info-libro {
-            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .categoria-tag {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            font-weight: bold;
-            color: #007185;
+            font-weight: 700;
+            color: #888;
+            letter-spacing: 1px;
             margin-bottom: 0.5rem;
         }
 
         .info-libro h3 {
-            margin-top: 0;
+            font-family: 'Georgia', 'Playfair Display', serif;
+            margin: 0;
             font-size: 1.15rem;
-            text-transform: uppercase;
+            line-height: 1.3;
+            color: #111;
         }
 
         .info-libro h4 {
-            margin: 0.5rem 0;
-            font-size: 1rem;
+            margin: 0.4rem 0 0.8rem;
+            font-size: 0.9rem;
             font-style: italic;
-            color: #444;
+            color: #555;
             font-weight: normal;
         }
 
+        /* Limitar descripción para mantener altura uniforme */
         .info-libro p {
             font-size: 0.9rem;
             color: #666;
+            line-height: 1.6;
+            margin: 0 0 1.5rem 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Muestra solo 3 líneas */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
             flex-grow: 1;
-            line-height: 1.4;
         }
 
+        /* Botón de compra minimalista */
         .btn-amazon {
-            display: inline-block;
-            text-align: center;
-            background-color: #ffd814;
-            color: #0f1111;
+            align-self: flex-start;
+            background-color: #111;
+            color: #fff;
             text-decoration: none;
-            padding: 0.75rem;
-            border-radius: 4px;
-            font-weight: bold;
-            border: 1px solid #fcd200;
-            transition: background 0.2s;
-            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            border: 1px solid #111;
         }
 
         .btn-amazon:hover {
-            background-color: #f7ca00;
+            background-color: #fff;
+            color: #111;
         }
 
         footer {
             text-align: center;
-            padding: 1.5rem;
-            background-color: #232f3e;
-            color: white;
-            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #ffffff;
+            color: #888;
+            border-top: 1px solid #eaeaea;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -143,15 +183,15 @@
 
     <header>
         <h1>Luis Fernando Carranza</h1>
-        <p>Catálogo oficial de obras publicadas en Amazon Kindle</p>
+        <p>Catálogo oficial de obras literarias y académicas</p>
     </header>
 
     <!-- Botones de Filtrado -->
     <div class="filtros">
-        <button class="btn-filtro activo" onclick="filtrarLibros('todos', this)">Todos</button>
+        <button class="btn-filtro activo" onclick="filtrarLibros('todos', this)">Colección Completa</button>
         <button class="btn-filtro" onclick="filtrarLibros('Derecho', this)">Derecho</button>
         <button class="btn-filtro" onclick="filtrarLibros('Historia', this)">Historia</button>
-        <button class="btn-filtro" onclick="filtrarLibros('Cuentos Cortos', this)">Cuentos Cortos</button>
+        <button class="btn-filtro" onclick="filtrarLibros('Cuentos Cortos', this)">Ficción y Cuentos</button>
     </div>
 
     <main>
@@ -161,11 +201,11 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Luis Fernando Carranza - Todos los derechos reservados</p>
+        <p>&copy; 2026 Luis Fernando Carranza - Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Lista de libros
+        // Lista de libros con tus datos exactos
         const libros = [
             // DERECHO
             {
@@ -193,10 +233,10 @@
                 enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DM9QFHHB"
             },
 
-            // HISTORIA (Basado en la categoría elegida implícita en los textos)
+            // HISTORIA
             {
                 titulo: "LEGADO LA HISTORIA DEL MUNDO",
-                subtitulo: "Un libro de 720 paginas con toda la historia de la humanidad desde el inicio de los tiempos hasta el siglo XXI",
+                subtitulo: "Toda la historia de la humanidad desde el inicio de los tiempos hasta el siglo XXI",
                 categoria: "Historia",
                 descripcion: "Una historia del mundo, contada con claridad, amplitud y pasión. Desde la formación del universo hasta el auge de la inteligencia artificial, este libro propone un recorrido ágil y riguroso por los grandes momentos de la historia humana. Dividido en nueve partes temáticas y cronológicas, ofrece al lector una visión global de las civilizaciones, las ideas, los conflictos y los cambios que han marcado nuestro pasado colectivo.",
                 portada: "https://m.media-amazon.com/images/I/71qAzgZ1kyL._SL1500_.jpg",
@@ -229,8 +269,8 @@
                 enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FSCKPJ2F"
             },
             {
-                titulo: "EL TAPIZ FRACTURADO - CUENTO CORTO",
-                subtitulo: "Viajes en el tiempo complejos",
+                titulo: "EL TAPIZ FRACTURADO",
+                subtitulo: "Cuento Corto: Viajes en el tiempo complejos",
                 categoria: "Cuentos Cortos",
                 descripcion: "En un futuro donde la ciencia ha tejido los límites del tiempo como si fueran hilos de un tapiz infinito, El Tapiz Fracturado nos sumerge en un viaje vertiginoso a través de múltiples realidades, decisiones imposibles y paradojas sin salida. Este cuento de ciencia ficción explora las consecuencias de intervenir en el pasado, no solo desde la física, sino desde lo humano.",
                 portada: "https://m.media-amazon.com/images/I/81711uPpcjL._SL1500_.jpg",
@@ -262,16 +302,14 @@
                 const tarjeta = document.createElement("div");
                 tarjeta.classList.add("tarjeta-libro");
                 
-                // Si la portada es LINK_DE_TU_IMAGEN_AQUI, usamos el placeholder dinámico
                 let portadaSrc = libro.portada === "LINK_DE_TU_IMAGEN_AQUI" 
-                    ? `https://via.placeholder.com/300x450/131921/FFFFFF?text=${encodeURIComponent(libro.titulo)}`
+                    ? `https://via.placeholder.com/300x450/eeeeee/333333?text=${encodeURIComponent(libro.titulo)}`
                     : libro.portada;
 
-                // Solo mostramos subtítulo si existe
                 let subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
                 
                 tarjeta.innerHTML = `
-                    <img src="${portadaSrc}" alt="Portada de ${libro.titulo}" onerror="this.src='https://via.placeholder.com/300x450/131921/FFFFFF?text=${encodeURIComponent(libro.titulo)}'">
+                    <img src="${portadaSrc}" alt="Portada de ${libro.titulo}" onerror="this.src='https://via.placeholder.com/300x450/eeeeee/333333?text=${encodeURIComponent(libro.titulo)}'">
                     <div class="info-libro">
                         <span class="categoria-tag">${libro.categoria}</span>
                         <h3>${libro.titulo}</h3>
@@ -286,7 +324,6 @@
         }
 
         function filtrarLibros(categoria, boton) {
-            // Cambiar clase activa en los botones
             document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('activo'));
             boton.classList.add('activo');
 
@@ -298,7 +335,6 @@
             }
         }
 
-        // Cargar todos al iniciar la página
         document.addEventListener("DOMContentLoaded", () => {
             mostrarLibros(libros);
         });
