@@ -69,11 +69,12 @@
         }
 
         .tarjeta-libro img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            background-color: #eee;
-        }
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 3; /* Proporción estándar de libros */
+    object-fit: contain; /* Asegura que no se recorte nada */
+    background-color: #eee;
+}
 
         .info-libro {
             padding: 1.5rem;
