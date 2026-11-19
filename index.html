@@ -26,7 +26,7 @@
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
         }
 
@@ -148,17 +148,19 @@
             line-height: 1.75;
         }
 
-        .hero-actions {
+        .hero-actions,
+        .modal-acciones {
             display: flex;
-            gap: 1rem;
+            gap: 0.85rem;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .btn-primary {
             background-color: var(--accent-red);
             color: #fff;
             text-decoration: none;
-            padding: 0.85rem 2rem;
+            padding: 0.85rem 1.8rem;
             border-radius: 3px;
             font-size: 0.85rem;
             font-weight: 700;
@@ -176,6 +178,30 @@
             background-color: var(--accent-red-hover);
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(185, 28, 28, 0.35);
+        }
+
+        .btn-descarga {
+            background-color: rgba(255, 255, 255, 0.06);
+            color: #f3f4f6;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            padding: 0.85rem 1.6rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .btn-descarga:hover {
+            border-color: #fff;
+            background-color: rgba(255, 255, 255, 0.14);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
@@ -637,8 +663,11 @@
                     En un pueblo aislado, quince criaturas enormes y de cuatro ojos vigilan cada puerta día y noche sin permitir que nadie salga. Un relato ilustrado de terror, suspenso y un giro final que cambiará todo lo que creías saber.
                 </p>
                 <div class="hero-actions">
-                    <a href="https://www.amazon.com/dp/B0HS6X2C69?th=1" target="_blank" class="btn-primary">
+                    <a href="https://www.amazon.com/dp/B0HS6X2C69?th=1" target="_blank" rel="noopener noreferrer" class="btn-primary">
                         Adquirir en Amazon &rarr;
+                    </a>
+                    <a href="https://github.com/ferdoctuss/MisLibros/releases/download/v1.0/LA_VIGILIA.epub" download class="btn-descarga">
+                        Descargar gratis
                     </a>
                     <button class="btn-secondary" onclick="abrirModalPorTitulo('La Vigilia')">
                         Leer Sinopsis
@@ -711,7 +740,8 @@
                 categoria: "Derecho",
                 descripcion: "Guía indispensable para entender de dónde viene la forma en que entendemos la justicia hoy en día. Olvídate de los manuales aburridos: este libro te lleva de la mano a descubrir cómo las reglas que rigen nuestra vida cotidiana —desde un contrato de alquiler hasta la forma en que compramos una casa— nacieron en las calles y tribunales de la antigua Roma.",
                 portada: "https://m.media-amazon.com/images/I/71o7ZJiO9FL._SL1500_.jpg", 
-                enlaceAmazon: "https://www.amazon.com/dp/B0HK5LDPTF"
+                enlaceAmazon: "https://www.amazon.com/dp/B0HK5LDPTF",
+                descargaGratis: ""
             },
             {
                 titulo: "DERECHO ROMANO Y DERECHO ANGLOSAJÓN",
@@ -719,7 +749,8 @@
                 categoria: "Derecho",
                 descripcion: "Este libro ofrece un recorrido comparativo por los dos grandes modelos jurídicos que han marcado la historia y configuración del Derecho moderno: el Derecho Romano y el Derecho Anglosajón (Common Law). A través de una estructura clara y rigurosa, se abordan sus orígenes históricos, fuentes normativas, principios fundamentales, instituciones clave, y su vigencia actual en el mundo globalizado.",
                 portada: "https://m.media-amazon.com/images/I/81i3eMECfHL._SL1500_.jpg", 
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F9N4LLZQ"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0F9N4LLZQ",
+                descargaGratis: ""
             },
             {
                 titulo: "DERECHO ROMANO",
@@ -727,7 +758,8 @@
                 categoria: "Derecho",
                 descripcion: "¿Alguna vez te has preguntado de dónde provienen los principios legales que rigen nuestra sociedad? ¿Te gustaría conocer el sistema jurídico que sentó las bases de la civilización occidental? Embárcate en un apasionante viaje a través del tiempo con este libro que te revelará los secretos del Derecho Romano, un legado milenario que sigue vigente en nuestros días.",
                 portada: "https://m.media-amazon.com/images/I/91e8IPYdMiL._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0D9KSNS16"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0D9KSNS16",
+                descargaGratis: ""
             },
             {
                 titulo: "INTRODUCCIÓN AL DERECHO INTERNACIONAL",
@@ -735,7 +767,8 @@
                 categoria: "Derecho",
                 descripcion: "Obra fundamental para estudiantes, profesionales y apasionados por el mundo del derecho. En este libro, se exploran de manera clara y estructurada los pilares y la evolución del Derecho Internacional, brindando una comprensión profunda sobre sus principios esenciales y su relevancia en el contexto global actual.",
                 portada: "https://m.media-amazon.com/images/I/61BCTMcwzLL._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DM9QFHHB"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DM9QFHHB",
+                descargaGratis: ""
             },
 
             // HISTORIA
@@ -745,7 +778,8 @@
                 categoria: "Historia",
                 descripcion: "Una historia del mundo, contada con claridad, amplitud y pasión. Desde la formación del universo hasta el auge de la inteligencia artificial, este libro propone un recorrido ágil y riguroso por los grandes momentos de la historia humana. Dividido en nueve partes temáticas y cronológicas, ofrece al lector una visión global de las civilizaciones, las ideas, los conflictos y los cambios que han marcado nuestro pasado colectivo.",
                 portada: "https://m.media-amazon.com/images/I/71qAzgZ1kyL._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/dp/B0F9TPC3JL"
+                enlaceAmazon: "https://www.amazon.com/dp/B0F9TPC3JL",
+                descargaGratis: ""
             },
             {
                 titulo: "RASPUTÍN",
@@ -753,7 +787,8 @@
                 categoria: "Historia",
                 descripcion: "En el ocaso del Imperio ruso, un hombre de origen humilde se convirtió en la figura más temida y fascinante de la corte imperial. Grigori Rasputín, campesino siberiano, místico y sanador, entró en la vida del zar Nicolás II y la zarina Alexandra. Este libro recorre su vida desde la aldea donde nació hasta la noche de su asesinato, desmontando mitos y revelando la verdad detrás del hombre que, según muchos, aceleró la caída de la dinastía Romanov.",
                 portada: "https://m.media-amazon.com/images/I/616+TDNgIPL._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FMKKXC4B"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FMKKXC4B",
+                descargaGratis: ""
             },
             {
                 titulo: "EL MONSTRUO DE LOS ANDES",
@@ -761,7 +796,8 @@
                 categoria: "Historia",
                 descripcion: "Crímenes que no deben olvidarse: El caso de Pedro Alonso López es una exploración rigurosa y respetuosa de uno de los episodios más oscuros de la historia criminal de América Latina. Este libro narra la vida y los crímenes del 'Monstruo de los Andes', un asesino en serie que confesó haber matado a más de 300 niñas en Colombia, Ecuador y Perú durante la década de 1970.",
                 portada: "https://m.media-amazon.com/images/I/71hL-VH2IFL._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FLRSNRNX"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FLRSNRNX",
+                descargaGratis: ""
             },
 
             // CUENTOS CORTOS
@@ -771,7 +807,8 @@
                 categoria: "Cuentos Cortos",
                 descripcion: "En un pueblo aislado, quince criaturas enormes y de cuatro ojos vigilan cada puerta día y noche sin permitir que nadie salga. Cuando un niño descubre que parece ser invisible para ellas —y que quienes se mantienen unidos a su contacto quedan a salvo—, nace una última esperanza para escapar de la encrucijada. Pero en la oscuridad de la noche, huir puede convertirse en la peor trampa. La vigilia es un relato breve e ilustrado de terror, suspenso y un giro final que cambiará todo lo que creías saber.",
                 portada: "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71XjXrLJ6JL._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/dp/B0HS6X2C69?th=1"
+                enlaceAmazon: "https://www.amazon.com/dp/B0HS6X2C69?th=1",
+                descargaGratis: "https://github.com/ferdoctuss/MisLibros/releases/download/v1.0/LA_VIGILIA.epub"
             },
             {
                 titulo: "EL HOMBRE CON CARA DE VACA",
@@ -779,7 +816,8 @@
                 categoria: "Cuentos Cortos",
                 descripcion: "En lo profundo del campo, donde la oscuridad se mezcla con la niebla, nace una leyenda que hiela la sangre: El Hombre con Cara de Vaca. Durante generaciones, los abuelos advirtieron a sus nietos sobre una criatura que se alimenta de animales y, a veces, de seres humanos. Nadie le presta atención a los cuentos antiguos, hasta que la noche se convierte en pesadilla.",
                 portada: "https://m.media-amazon.com/images/I/71n8W4RHG1L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FSCKPJ2F"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FSCKPJ2F",
+                descargaGratis: ""
             },
             {
                 titulo: "EL TAPIZ FRACTURADO",
@@ -787,7 +825,8 @@
                 categoria: "Cuentos Cortos",
                 descripcion: "En un futuro donde la ciencia ha tejido los límites del tiempo como si fueran hilos de un tapiz infinito, El Tapiz Fracturado nos sumerge en un viaje vertiginoso a través de múltiples realidades, decisiones imposibles y paradojas sin salida. Este cuento de ciencia ficción explora las consecuencias de intervenir en el pasado, no solo desde la física, sino desde lo humano.",
                 portada: "https://m.media-amazon.com/images/I/81711uPpcjL._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DS6HVB23"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0DS6HVB23",
+                descargaGratis: ""
             },
             {
                 titulo: "EL ÚLTIMO REFUGIO",
@@ -795,7 +834,8 @@
                 categoria: "Cuentos Cortos",
                 descripcion: "En el año 2275, la Tierra se ha vuelto inhabitable tras un fallido experimento de geoingeniería. La humanidad sobrevive confinada en la imponente Ciudad Vertical, una megaestructura donde el privilegio se mide en pisos y la esperanza parece un mito del pasado. Unidos por el misterio del 'Proyecto Edén', un trío se lanza a descubrir una verdad que los celestes han ocultado.",
                 portada: "https://m.media-amazon.com/images/I/61sj2dIuH-L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FBSTNTR3"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0FBSTNTR3",
+                descargaGratis: ""
             },
             {
                 titulo: "LA ÚLTIMA HORA DEL PRINCIPIO",
@@ -803,7 +843,8 @@
                 categoria: "Cuentos Cortos",
                 descripcion: "Atrapado en un laboratorio al borde del colapso, un científico viaja cuatro horas al pasado para evitar una catástrofe, solo para descubrir que ha entrado en un bucle infinito donde se enfrenta a su propio alter ego en un ciclo eterno de muerte y renacimiento.",
                 portada: "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/8104Oi8UM+L._SL1500_.jpg",
-                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0HFYK8M5X"
+                enlaceAmazon: "https://www.amazon.com/Fernando-Carranza-ebook/dp/B0HFYK8M5X",
+                descargaGratis: ""
             }
         ];
 
@@ -847,6 +888,9 @@
 
         function abrirModal(libro) {
             const subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
+            const descargaHtml = libro.descargaGratis
+                ? `<a href="${libro.descargaGratis}" download class="btn-descarga">Descargar gratis</a>`
+                : '';
             
             modalCuerpo.innerHTML = `
                 <div class="modal-portada">
@@ -858,9 +902,12 @@
                     ${subtituloHtml}
                     <div class="modal-divider"></div>
                     <p>${libro.descripcion}</p>
-                    <a href="${libro.enlaceAmazon}" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                        Comprar en Amazon &rarr;
-                    </a>
+                    <div class="modal-acciones">
+                        <a href="${libro.enlaceAmazon}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                            Comprar en Amazon &rarr;
+                        </a>
+                        ${descargaHtml}
+                    </div>
                 </div>
             `;
             modal.style.display = "flex";
