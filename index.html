@@ -3,206 +3,514 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fernando Carranza - Autor</title>
+    <title>Fernando Carranza | Sitio Oficial del Autor</title>
+    <!-- Fuentes Google Fonts para estética editorial y cinematográfica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- ESTILOS PRINCIPALES --- */
+        /* --- VARIABLES Y CONFIGURACIÓN BASE --- */
+        :root {
+            --bg-primary: #0b0c0e;
+            --bg-secondary: #13151a;
+            --bg-card: #181a20;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-red: #b91c1c;
+            --accent-red-hover: #dc2626;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --font-display: 'Cinzel', 'Playfair Display', Georgia, serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: var(--font-sans);
             margin: 0;
             padding: 0;
-            background-color: #fafafa;
-            color: #222;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        header {
-            text-align: center;
-            padding: 5rem 1rem 3rem;
-            background-color: #ffffff;
-            border-bottom: 1px solid #eaeaea;
+        /* --- BARRA DE NAVEGACIÓN --- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background-color: rgba(11, 12, 14, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
         }
 
-        header h1 {
-            font-family: 'Georgia', 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: normal;
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-logo span {
+            color: var(--accent-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* --- SECCIÓN HERO (OBRA DESTACADA) --- */
+        .hero {
+            position: relative;
+            background: radial-gradient(circle at 75% 40%, rgba(185, 28, 28, 0.16), transparent 55%),
+                        linear-gradient(180deg, #111318 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 4.5rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: rgba(185, 28, 28, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(185, 28, 28, 0.4);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.35rem 0.9rem;
+            border-radius: 3px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            line-height: 1.15;
+            margin: 0 0 1rem 0;
+            color: #fff;
             letter-spacing: 1px;
-            margin: 0 0 0.5rem 0;
-            color: #111;
         }
 
-        header p {
-            color: #666;
-            font-size: 1.1rem;
-            font-style: italic;
+        .hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-red);
+            color: #fff;
+            text-decoration: none;
+            padding: 0.85rem 2rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(185, 28, 28, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.85rem 1.8rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #fff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-book-wrapper {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-book-wrapper img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 3px 6px 6px 3px;
+            box-shadow: -12px 15px 35px rgba(0, 0, 0, 0.85), 0 0 40px rgba(185, 28, 28, 0.2);
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+
+        .hero-book-wrapper img:hover {
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        /* --- SECCIÓN CATÁLOGO Y CONTROLES --- */
+        .catalogo-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .section-title-group h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
             margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title-group p {
+            color: var(--text-secondary);
+            margin: 0.3rem 0 0 0;
+            font-size: 0.95rem;
+        }
+
+        /* Buscador */
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-family: var(--font-sans);
+            transition: border-color 0.25s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-red);
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 16px;
+            height: 16px;
         }
 
         /* Botones de Filtro */
         .filtros {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 3rem 0 1rem 0;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
             flex-wrap: wrap;
-            padding: 0 1rem;
         }
 
         .btn-filtro {
-            background-color: transparent;
-            color: #555;
-            border: 1px solid #ccc;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: 0.6rem 1.4rem;
+            border-radius: 3px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            letter-spacing: 1.2px;
+            transition: all 0.25s ease;
         }
 
-        .btn-filtro:hover, .btn-filtro.activo {
-            background-color: #111;
+        .btn-filtro:hover {
             color: #fff;
-            border-color: #111;
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Cuadrícula de libros (Solo Muestra Título y Portada) */
+        .btn-filtro.activo {
+            background-color: var(--accent-red);
+            color: #fff;
+            border-color: var(--accent-red);
+        }
+
+        /* --- CUADRÍCULA DE LIBROS --- */
         .grid-libros {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 3.5rem 2rem; 
-            max-width: 1200px;
-            margin: 2rem auto 5rem;
-            padding: 0 2rem;
-            align-items: start;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2.5rem 2rem;
         }
 
         .tarjeta-libro {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
-            background: transparent;
-            cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
-            transition: transform 0.2s ease;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .tarjeta-libro:hover {
-            transform: scale(1.02); /* Pequeño efecto de zoom al pasar el ratón */
+            transform: translateY(-6px);
+            border-color: rgba(185, 28, 28, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .portada-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            margin-bottom: 1.2rem;
+            border-radius: 2px 5px 5px 2px;
+            overflow: hidden;
+            background-color: #0d0e11;
+            box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.7);
         }
 
         .tarjeta-libro img {
             width: 100%;
-            height: auto;
-            aspect-ratio: 2 / 3;
-            object-fit: contain; 
-            border-radius: 2px 5px 5px 2px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
-            margin-bottom: 1.5rem;
-            background-color: transparent;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .tarjeta-libro:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Efecto sutil de lomo de libro */
+        .portada-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.35) 60%, transparent 100%);
+            pointer-events: none;
         }
 
         .info-libro {
             display: flex;
             flex-direction: column;
+            flex: 1;
         }
 
         .categoria-tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             font-weight: 700;
-            color: #888;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            color: #ef4444;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.4rem;
         }
 
         .info-libro h3 {
-            font-family: 'Georgia', 'Playfair Display', serif;
+            font-family: var(--font-serif);
             margin: 0;
             font-size: 1.15rem;
-            line-height: 1.3;
-            color: #111;
+            line-height: 1.35;
+            color: var(--text-primary);
+            font-weight: 700;
         }
 
         .info-libro h4 {
-            margin: 0.4rem 0 0;
-            font-size: 0.9rem;
-            font-style: italic;
-            color: #555;
-            font-weight: normal;
+            margin: 0.45rem 0 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.45;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        /* --- VENTANA MODAL (SUB-PÁGINA) --- */
+        .ver-detalle {
+            margin-top: auto;
+            padding-top: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.25s ease;
+        }
+
+        .tarjeta-libro:hover .ver-detalle {
+            color: #fff;
+        }
+
+        /* --- VENTANA MODAL --- */
         .modal {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7); /* Fondo oscuro semitransparente */
-            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
+            padding: 1rem;
         }
 
         .modal-content {
-            background-color: #fff;
-            margin: auto;
-            padding: 0;
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 8px;
-            width: 90%;
-            max-width: 900px;
+            width: 100%;
+            max-width: 920px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            animation: deslizarArriba 0.3s ease-out;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+            animation: modalFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes deslizarArriba {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes modalFadeIn {
+            from { transform: translateY(25px) scale(0.98); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
 
         .cerrar-btn {
             position: absolute;
             right: 20px;
-            top: 15px;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #888;
+            top: 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            transition: all 0.2s ease;
             z-index: 10;
         }
 
         .cerrar-btn:hover {
-            color: #111;
+            background: var(--accent-red);
+            color: #fff;
+            border-color: var(--accent-red);
         }
 
         .modal-body {
             display: flex;
             flex-direction: column;
-            padding: 3rem;
-            gap: 2rem;
+            padding: 2.5rem;
+            gap: 2.5rem;
         }
 
         @media (min-width: 768px) {
             .modal-body {
                 flex-direction: row;
+                padding: 3rem;
             }
         }
 
         .modal-portada {
-            flex: 0 0 35%;
-            max-width: 300px;
+            flex: 0 0 36%;
+            max-width: 290px;
             margin: 0 auto;
         }
 
         .modal-portada img {
             width: 100%;
-            border-radius: 2px 5px 5px 2px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            border-radius: 3px 6px 6px 3px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
         }
 
         .modal-info {
@@ -213,93 +521,188 @@
         }
 
         .modal-info h2 {
-            font-family: 'Georgia', 'Playfair Display', serif;
-            font-size: 2rem;
-            margin: 0 0 0.5rem 0;
-            color: #111;
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            line-height: 1.2;
+            margin: 0 0 0.6rem 0;
+            color: #fff;
         }
 
         .modal-info h4 {
-            font-size: 1.1rem;
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
             font-style: italic;
-            color: #555;
+            color: var(--text-secondary);
             margin: 0 0 1.5rem 0;
-            font-weight: normal;
+            font-weight: 400;
+        }
+
+        .modal-divider {
+            height: 1px;
+            background-color: var(--border-subtle);
+            margin-bottom: 1.5rem;
         }
 
         .modal-info p {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #444;
-            margin-bottom: 2rem;
+            font-size: 0.98rem;
+            line-height: 1.8;
+            color: #d1d5db;
+            margin: 0 0 2rem 0;
         }
 
-        .btn-amazon {
-            align-self: flex-start;
-            background-color: #111;
-            color: #fff;
-            text-decoration: none;
-            padding: 0.8rem 1.8rem;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-weight: bold;
+        /* --- SECCIÓN SOBRE EL AUTOR & FOOTER --- */
+        .autor-section {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 4.5rem 2rem;
+        }
+
+        .autor-container {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .autor-container h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin: 0 0 1rem 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background 0.3s;
-            border: 1px solid #111;
         }
 
-        .btn-amazon:hover {
-            background-color: #fff;
-            color: #111;
+        .autor-container p {
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+            line-height: 1.8;
+            margin: 0;
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
-            background-color: #ffffff;
-            color: #888;
-            border-top: 1px solid #eaeaea;
-            font-size: 0.9rem;
+            padding: 2.5rem 1rem;
+            background-color: var(--bg-primary);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 850px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Fernando Carranza</h1>
-        <p>Catálogo de obras literarias y académicas propias</p>
-    </header>
+    <!-- Navegación Superior -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Fernando <span>Carranza</span></a>
+            <div class="nav-links">
+                <a href="#destacado">Novedad</a>
+                <a href="#catalogo">Obras</a>
+                <a href="#autor">El Autor</a>
+            </div>
+        </div>
+    </nav>
 
-    <div class="filtros">
-        <button class="btn-filtro activo" onclick="filtrarLibros('todos', this)">Colección Completa</button>
-        <button class="btn-filtro" onclick="filtrarLibros('Derecho', this)">Derecho</button>
-        <button class="btn-filtro" onclick="filtrarLibros('Historia', this)">Historia</button>
-        <button class="btn-filtro" onclick="filtrarLibros('Cuentos Cortos', this)">Ficción y Cuentos</button>
-    </div>
+    <!-- Escaparate Principal (Obra Destacada) -->
+    <section id="destacado" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-badge">Lanzamiento Destacado</span>
+                <h1 class="hero-title">LA VIGILIA</h1>
+                <p class="hero-desc">
+                    En un pueblo aislado, quince criaturas enormes y de cuatro ojos vigilan cada puerta día y noche sin permitir que nadie salga. Un relato ilustrado de terror, suspenso y un giro final que cambiará todo lo que creías saber.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://www.amazon.com/dp/B0HS6X2C69?th=1" target="_blank" class="btn-primary">
+                        Adquirir en Amazon &rarr;
+                    </a>
+                    <button class="btn-secondary" onclick="abrirModalPorTitulo('La Vigilia')">
+                        Leer Sinopsis
+                    </button>
+                </div>
+            </div>
+            <div class="hero-book-wrapper">
+                <img src="https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71XjXrLJ6JL._SL1500_.jpg" 
+                     alt="Portada de La Vigilia" 
+                     onclick="abrirModalPorTitulo('La Vigilia')">
+            </div>
+        </div>
+    </section>
 
-    <main>
+    <!-- Catálogo Completo -->
+    <main id="catalogo" class="catalogo-section">
+        <div class="section-header">
+            <div class="section-title-group">
+                <h2>Bibliografía Oficial</h2>
+                <p>Explora ensayos jurídicos, crónicas históricas y relatos de ficción.</p>
+            </div>
+            <div class="search-box">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 10.5a7.5 7.5 0 0013.15 6.15z" />
+                </svg>
+                <input type="text" id="buscador" placeholder="Buscar título o tema..." oninput="aplicarFiltros()">
+            </div>
+        </div>
+
+        <div class="filtros">
+            <button class="btn-filtro activo" onclick="seleccionarCategoria('todos', this)">Todas las Obras (12)</button>
+            <button class="btn-filtro" onclick="seleccionarCategoria('Derecho', this)">Derecho</button>
+            <button class="btn-filtro" onclick="seleccionarCategoria('Historia', this)">Historia</button>
+            <button class="btn-filtro" onclick="seleccionarCategoria('Cuentos Cortos', this)">Ficción y Cuentos</button>
+        </div>
+
         <div id="contenedor-libros" class="grid-libros">
-            <!-- Los libros se cargarán dinámicamente aquí -->
+            <!-- Los libros se renderizan dinámicamente -->
         </div>
     </main>
 
-    <!-- Estructura de la Ventana Modal -->
-    <div id="modal-libro" class="modal">
+    <!-- Biografía Breve -->
+    <section id="autor" class="autor-section">
+        <div class="autor-container">
+            <h2>Sobre Fernando Carranza</h2>
+            <p>
+                Escritor e investigador dedicado a tender puentes entre el rigor académico y la narrativa envolvente. Su obra abarca desde el análisis histórico de los grandes sistemas jurídicos y episodios oscuros de la humanidad hasta relatos de ficción especulativa, suspenso y terror psicológico.
+            </p>
+        </div>
+    </section>
+
+    <!-- Modal de Detalle -->
+    <div id="modal-libro" class="modal" role="dialog" aria-modal="true">
         <div class="modal-content">
-            <span class="cerrar-btn" onclick="cerrarModal()">&times;</span>
-            <div id="modal-cuerpo" class="modal-body">
-                <!-- El contenido se inyecta por JavaScript -->
-            </div>
+            <button class="cerrar-btn" onclick="cerrarModal()" aria-label="Cerrar">&times;</button>
+            <div id="modal-cuerpo" class="modal-body"></div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Luis Fernando Carranza - Todos los derechos reservados.</p>
+        <p>&copy; 2026 Luis Fernando Carranza — Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Lista completa de tus libros
         const libros = [
             // DERECHO
             {
@@ -362,18 +765,17 @@
             },
 
             // CUENTOS CORTOS
-           {
+            {
                 titulo: "La Vigilia",
-                subtitulo: "",
+                subtitulo: "Relato breve e ilustrado de terror y suspenso",
                 categoria: "Cuentos Cortos",
                 descripcion: "En un pueblo aislado, quince criaturas enormes y de cuatro ojos vigilan cada puerta día y noche sin permitir que nadie salga. Cuando un niño descubre que parece ser invisible para ellas —y que quienes se mantienen unidos a su contacto quedan a salvo—, nace una última esperanza para escapar de la encrucijada. Pero en la oscuridad de la noche, huir puede convertirse en la peor trampa. La vigilia es un relato breve e ilustrado de terror, suspenso y un giro final que cambiará todo lo que creías saber.",
                 portada: "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71XjXrLJ6JL._SL1500_.jpg",
                 enlaceAmazon: "https://www.amazon.com/dp/B0HS6X2C69?th=1"
             },
-            
             {
                 titulo: "EL HOMBRE CON CARA DE VACA",
-                subtitulo: "",
+                subtitulo: "Una leyenda rural que hiela la sangre",
                 categoria: "Cuentos Cortos",
                 descripcion: "En lo profundo del campo, donde la oscuridad se mezcla con la niebla, nace una leyenda que hiela la sangre: El Hombre con Cara de Vaca. Durante generaciones, los abuelos advirtieron a sus nietos sobre una criatura que se alimenta de animales y, a veces, de seres humanos. Nadie le presta atención a los cuentos antiguos, hasta que la noche se convierte en pesadilla.",
                 portada: "https://m.media-amazon.com/images/I/71n8W4RHG1L._SL1500_.jpg",
@@ -381,7 +783,7 @@
             },
             {
                 titulo: "EL TAPIZ FRACTURADO",
-                subtitulo: "",
+                subtitulo: "Ciencia ficción sobre paradojas temporales",
                 categoria: "Cuentos Cortos",
                 descripcion: "En un futuro donde la ciencia ha tejido los límites del tiempo como si fueran hilos de un tapiz infinito, El Tapiz Fracturado nos sumerge en un viaje vertiginoso a través de múltiples realidades, decisiones imposibles y paradojas sin salida. Este cuento de ciencia ficción explora las consecuencias de intervenir en el pasado, no solo desde la física, sino desde lo humano.",
                 portada: "https://m.media-amazon.com/images/I/81711uPpcjL._SL1500_.jpg",
@@ -389,7 +791,7 @@
             },
             {
                 titulo: "EL ÚLTIMO REFUGIO",
-                subtitulo: "",
+                subtitulo: "Distopía en la Ciudad Vertical del año 2275",
                 categoria: "Cuentos Cortos",
                 descripcion: "En el año 2275, la Tierra se ha vuelto inhabitable tras un fallido experimento de geoingeniería. La humanidad sobrevive confinada en la imponente Ciudad Vertical, una megaestructura donde el privilegio se mide en pisos y la esperanza parece un mito del pasado. Unidos por el misterio del 'Proyecto Edén', un trío se lanza a descubrir una verdad que los celestes han ocultado.",
                 portada: "https://m.media-amazon.com/images/I/61sj2dIuH-L._SL1500_.jpg",
@@ -397,7 +799,7 @@
             },
             {
                 titulo: "LA ÚLTIMA HORA DEL PRINCIPIO",
-                subtitulo: "",
+                subtitulo: "Un bucle infinito de muerte y renacimiento",
                 categoria: "Cuentos Cortos",
                 descripcion: "Atrapado en un laboratorio al borde del colapso, un científico viaja cuatro horas al pasado para evitar una catástrofe, solo para descubrir que ha entrado en un bucle infinito donde se enfrenta a su propio alter ego en un ciclo eterno de muerte y renacimiento.",
                 portada: "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/8104Oi8UM+L._SL1500_.jpg",
@@ -405,25 +807,33 @@
             }
         ];
 
+        let categoriaActual = 'todos';
+
         function mostrarLibros(librosAMostrar) {
             const contenedor = document.getElementById("contenedor-libros");
             contenedor.innerHTML = "";
+
+            if (librosAMostrar.length === 0) {
+                contenedor.innerHTML = `<div class="empty-state">No se encontraron obras que coincidan con tu búsqueda.</div>`;
+                return;
+            }
             
-            librosAMostrar.forEach((libro, index) => {
-                const tarjeta = document.createElement("div");
+            librosAMostrar.forEach(libro => {
+                const tarjeta = document.createElement("article");
                 tarjeta.classList.add("tarjeta-libro");
-                // Al hacer clic, enviamos el objeto del libro a la función abrirModal
                 tarjeta.onclick = () => abrirModal(libro);
                 
-                let subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
+                const subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
                 
-                // Muestra SOLO Portada, Categoría, Título y Subtítulo en la cuadrícula
                 tarjeta.innerHTML = `
-                    <img src="${libro.portada}" alt="Portada de ${libro.titulo}">
+                    <div class="portada-wrapper">
+                        <img src="${libro.portada}" alt="Portada de ${libro.titulo}" loading="lazy">
+                    </div>
                     <div class="info-libro">
                         <span class="categoria-tag">${libro.categoria}</span>
                         <h3>${libro.titulo}</h3>
                         ${subtituloHtml}
+                        <span class="ver-detalle">Explorar obra &rarr;</span>
                     </div>
                 `;
                 
@@ -431,12 +841,12 @@
             });
         }
 
-        // --- FUNCIONES DE LA VENTANA MODAL ---
+        // --- MODAL ---
         const modal = document.getElementById("modal-libro");
         const modalCuerpo = document.getElementById("modal-cuerpo");
 
         function abrirModal(libro) {
-            let subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
+            const subtituloHtml = libro.subtitulo ? `<h4>${libro.subtitulo}</h4>` : '';
             
             modalCuerpo.innerHTML = `
                 <div class="modal-portada">
@@ -446,37 +856,57 @@
                     <span class="categoria-tag">${libro.categoria}</span>
                     <h2>${libro.titulo}</h2>
                     ${subtituloHtml}
+                    <div class="modal-divider"></div>
                     <p>${libro.descripcion}</p>
-                    <a href="${libro.enlaceAmazon}" target="_blank" class="btn-amazon">Ver en Amazon</a>
+                    <a href="${libro.enlaceAmazon}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                        Comprar en Amazon &rarr;
+                    </a>
                 </div>
             `;
-            modal.style.display = "flex"; // Muestra el modal
-            document.body.style.overflow = "hidden"; // Evita que el fondo haga scroll
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function abrirModalPorTitulo(titulo) {
+            const libro = libros.find(l => l.titulo.toLowerCase() === titulo.toLowerCase());
+            if (libro) abrirModal(libro);
         }
 
         function cerrarModal() {
             modal.style.display = "none";
-            document.body.style.overflow = "auto"; // Reactiva el scroll del fondo
+            document.body.style.overflow = "auto";
         }
 
-        // Cierra el modal si el usuario hace clic fuera de la caja blanca
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                cerrarModal();
-            }
-        }
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) cerrarModal();
+        });
 
-        // --- FILTROS ---
-        function filtrarLibros(categoria, boton) {
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && modal.style.display === "flex") cerrarModal();
+        });
+
+        // --- FILTROS Y BÚSQUEDA ---
+        function seleccionarCategoria(categoria, boton) {
             document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('activo'));
             boton.classList.add('activo');
+            categoriaActual = categoria;
+            aplicarFiltros();
+        }
 
-            if (categoria === 'todos') {
-                mostrarLibros(libros);
-            } else {
-                const filtrados = libros.filter(libro => libro.categoria === categoria);
-                mostrarLibros(filtrados);
-            }
+        function aplicarFiltros() {
+            const textoBusqueda = document.getElementById("buscador").value.toLowerCase().trim();
+            
+            const filtrados = libros.filter(libro => {
+                const coincideCategoria = categoriaActual === 'todos' || libro.categoria === categoriaActual;
+                const coincideTexto = !textoBusqueda || 
+                    libro.titulo.toLowerCase().includes(textoBusqueda) ||
+                    libro.subtitulo.toLowerCase().includes(textoBusqueda) ||
+                    libro.descripcion.toLowerCase().includes(textoBusqueda);
+                
+                return coincideCategoria && coincideTexto;
+            });
+
+            mostrarLibros(filtrados);
         }
 
         document.addEventListener("DOMContentLoaded", () => {
